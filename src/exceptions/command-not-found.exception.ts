@@ -1,5 +1,6 @@
 export class CommandHandlerNotFoundException {
   constructor(
-    public readonly message = 'CommandHandler not found exception!',
+    public readonly commandName: string,
+    public readonly message = `CommandHandler for ${commandName} not found!`,
   ) {}
 }

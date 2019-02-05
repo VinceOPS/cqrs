@@ -12,20 +12,21 @@
     "publish:npm": "npm publish --access public"
   },
   "devDependencies": {
-    "@nestjs/common": "^5.0.0",
+    "@nestjs/common": "^5.6.2",
+    "@nestjs/testing": "^5.6.2",
     "@types/jest": "^23.3.13",
-    "@types/node": "^7.0.41",
+    "@types/node": "^7.10.2",
     "husky": "^0.14.3",
     "jest": "^24.0.0",
-    "lint-staged": "^7.0.0",
-    "prettier": "^1.11.1",
-    "rxjs": "^6.1.0",
-    "rxjs-compat": "^6.2.1",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.16.4",
+    "rxjs": "^6.4.0",
+    "rxjs-compat": "^6.4.0",
     "ts-jest": "^23.10.5",
-    "typescript": "^2.8.0"
+    "typescript": "^2.9.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^5.0.0",
+    "@nestjs/common": "^5.6.2",
     "reflect-metadata": "0.1.12",
     "rxjs": "^6.1.0"
   },
@@ -36,9 +37,8 @@
     ]
   },
   "dependencies": {
-    "@nestjs/common": "^5.0.0",
-    "reflect-metadata": "^0.1.12",
-    "rxjs": "^6.1.0",
-    "rxjs-compat": "^6.2.1"
+    "@nestjs/common": "^5.6.2",
+    "@nestjs/core": "^5.6.2",
+    "reflect-metadata": "^0.1.13"
   }
 }

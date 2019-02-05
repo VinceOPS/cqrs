@@ -1,4 +1,4 @@
-import { Injectable, Type } from '@nestjs/common';
+import { Injectable, Type, Inject } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { CommandBus } from './command-bus';
@@ -9,23 +9,23 @@ import { IEvent, IEventBus, IEventHandler } from './interfaces/index';
 import { EVENTS_HANDLER_METADATA } from './utils/constants';
 import { DefaultPubSub } from './utils/default-pubsub';
 import { ObservableBus } from './utils/observable-bus';
+import { EVENT_PUBLISHER_TOKEN } from './providers';
 
 export type EventHandlerMetatype = Type<IEventHandler<IEvent>>;
 
 @Injectable()
 export class EventBus extends ObservableBus<IEvent> implements IEventBus {
   private moduleRef = null;
-  private _publisher: IEventPublisher;
 
-  constructor(private readonly commandBus: CommandBus) {
+  constructor(
+    private readonly commandBus: CommandBus,
+    @Inject(EVENT_PUBLISHER_TOKEN) private _publisher: IEventPublisher,
+  ) {
     super();
-    this.useDefaultPublisher();
-  }
 
-  private useDefaultPublisher() {
-    const pubSub = new DefaultPubSub();
-    pubSub.bridgeEventsTo(this.subject$);
-    this._publisher = pubSub;
+    if (this._publisher instanceof DefaultPubSub) {
+      this._publisher.bridgeEventsTo(this.subject$);
+    }
   }
 
   setModuleRef(moduleRef) {
